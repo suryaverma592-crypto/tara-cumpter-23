@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tara Computer Center – Majhaulia, Bihar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue-dark:  #0b2545;
+      --blue-mid:   #1a4a8a;
+      --blue-light: #2563c0;
+      --accent:     #1e6fdb;
+      --white:      #ffffff;
+      --off-white:  #f4f8ff;
+      --light-blue: #dbeafe;
+      --gray:       #64748b;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--blue-dark); overflow-x:hidden; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0.9rem 6%;
+      background:rgba(255,255,255,0.97);
+      backdrop-filter:blur(12px);
+      border-bottom:2px solid var(--light-blue);
+      box-shadow:0 2px 20px rgba(37,99,192,0.08);
+    }
+    .logo { font-family:'Playfair Display',serif; font-size:1.35rem; color:var(--blue-dark); line-height:1.1; }
+    .logo span { color:var(--blue-light); }
+    .logo small { display:block; font-family:'DM Sans',sans-serif; font-size:0.62rem; color:var(--gray); font-weight:500; letter-spacing:1.5px; text-transform:uppercase; margin-top:1px; }
+    nav ul { list-style:none; display:flex; gap:2.2rem; }
+    nav ul a { color:var(--gray); text-decoration:none; font-size:0.88rem; font-weight:500; transition:color .25s; }
+    nav ul a:hover { color:var(--blue-light); }
+    .nav-cta { background:var(--blue-light); color:var(--white); padding:.5rem 1.3rem; border-radius:8px; font-weight:600; font-size:.85rem; text-decoration:none; transition:background .25s, transform .2s; white-space:nowrap; }
+    .nav-cta:hover { background:var(--blue-mid); transform:translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height:100vh;
+      background:linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 60%, #1a4ea8 100%);
+      display:flex; align-items:center;
+      padding:110px 6% 70px;
+      position:relative; overflow:hidden;
+    }
+    .hero-dots { position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,0.07) 1.5px, transparent 1.5px); background-size:32px 32px; }
+    .hero-blob { position:absolute; right:-100px; top:-80px; width:600px; height:600px; background:radial-gradient(circle, rgba(37,99,192,0.35) 0%, transparent 70%); border-radius:50%; }
+    .hero-inner { position:relative; z-index:2; max-width:680px; }
+    .hero-badge { display:inline-flex; align-items:center; gap:.5rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); color:rgba(255,255,255,0.9); padding:.4rem 1.1rem; border-radius:50px; font-size:.75rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:1.8rem; animation:fadeUp .7s ease both; }
+    .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,6vw,4.2rem); color:var(--white); line-height:1.12; margin-bottom:1.2rem; animation:fadeUp .8s .1s ease both; }
+    .hero h1 em { font-style:normal; color:#93c5fd; }
+    .hero p { font-size:1.05rem; color:rgba(255,255,255,0.7); line-height:1.75; max-width:520px; margin-bottom:2.4rem; animation:fadeUp .9s .2s ease both; }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; animation:fadeUp 1s .3s ease both; }
+    .btn-primary { background:var(--white); color:var(--blue-mid); padding:.9rem 2rem; border-radius:10px; font-weight:700; font-size:.95rem; text-decoration:none; box-shadow:0 4px 20px rgba(0,0,0,0.2); transition:transform .2s, box-shadow .2s; display:inline-block; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,0,0,0.25); }
+    .btn-primary-blue { background:var(--blue-light); color:var(--white); padding:.9rem 2rem; border-radius:10px; font-weight:700; font-size:.95rem; text-decoration:none; box-shadow:0 4px 20px rgba(37,99,192,0.3); transition:transform .2s; display:inline-block; }
+    .btn-primary-blue:hover { transform:translateY(-2px); background:var(--blue-mid); }
+    .btn-outline { background:rgba(255,255,255,0.1); border:2px solid rgba(255,255,255,0.4); color:var(--white); padding:.9rem 2rem; border-radius:10px; font-weight:600; font-size:.95rem; text-decoration:none; transition:background .25s, border-color .25s; }
+    .btn-outline:hover { background:rgba(255,255,255,0.18); border-color:rgba(255,255,255,0.7); }
+
+    /* ── STATS BAR ── */
+    .stats-bar { display:flex; justify-content:center; flex-wrap:wrap; background:var(--white); border-bottom:2px solid var(--light-blue); box-shadow:0 4px 20px rgba(37,99,192,0.07); }
+    .stat-item { flex:1; min-width:160px; max-width:220px; text-align:center; padding:1.8rem 1rem; border-right:1px solid var(--light-blue); }
+    .stat-item:last-child { border-right:none; }
+    .stat-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--blue-light); }
+    .stat-lbl { font-size:.8rem; color:var(--gray); font-weight:500; margin-top:.2rem; }
+
+    /* ── SECTIONS ── */
+    section { padding:5rem 6%; }
+    .section-label { display:inline-block; background:var(--light-blue); color:var(--blue-light); font-size:.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:.35rem .9rem; border-radius:4px; margin-bottom:.9rem; }
+    .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.6rem); color:var(--blue-dark); line-height:1.2; margin-bottom:.9rem; }
+    .section-sub { color:var(--gray); font-size:1rem; line-height:1.75; max-width:520px; margin-bottom:3rem; }
+
+    /* ── ABOUT ── */
+    #about { background:var(--off-white); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .about-card { background:var(--white); border:2px solid var(--light-blue); border-radius:20px; padding:2.5rem 2rem; box-shadow:0 8px 40px rgba(37,99,192,0.08); text-align:center; }
+    .icon-circle { width:80px; height:80px; margin:0 auto 1.2rem; background:var(--light-blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.2rem; }
+    .about-card h3 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--blue-dark); margin-bottom:.5rem; }
+    .about-card p { color:var(--gray); font-size:.9rem; line-height:1.7; }
+    .feat-list { list-style:none; margin-top:1.5rem; display:flex; flex-direction:column; gap:.7rem; text-align:left; }
+    .feat-list li { display:flex; align-items:center; gap:.7rem; color:var(--blue-dark); font-size:.9rem; font-weight:500; }
+    .feat-list li::before { content:'✓'; color:var(--white); background:var(--blue-light); border-radius:50%; width:20px; height:20px; min-width:20px; display:flex; align-items:center; justify-content:center; font-size:.7rem; font-weight:700; }
+
+    /* ── COURSES ── */
+    #courses { background:var(--white); }
+    .courses-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1.8rem; margin-bottom:1.5rem; }
+    .course-card { background:var(--white); border:2px solid var(--light-blue); border-radius:16px; padding:2rem; transition:transform .3s, border-color .3s, box-shadow .3s; position:relative; overflow:hidden; }
+    .course-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--blue-light),var(--accent)); opacity:0; transition:opacity .3s; }
+    .course-card:hover { transform:translateY(-6px); border-color:var(--blue-light); box-shadow:0 16px 48px rgba(37,99,192,0.12); }
+    .course-card:hover::before { opacity:1; }
+    .course-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1rem; }
+    .course-icon { font-size:2.4rem; }
+    .course-badge { background:var(--light-blue); color:var(--blue-light); font-size:.7rem; font-weight:700; padding:.25rem .7rem; border-radius:20px; white-space:nowrap; }
+    .course-card h3 { font-size:1.15rem; font-weight:700; color:var(--blue-dark); margin-bottom:.5rem; }
+    .course-card p { color:var(--gray); font-size:.85rem; line-height:1.65; margin-bottom:1.2rem; }
+    .course-meta { display:flex; gap:1.5rem; flex-wrap:wrap; padding-top:1rem; border-top:1px solid var(--light-blue); }
+    .meta-item { display:flex; align-items:center; gap:.4rem; font-size:.8rem; color:var(--blue-mid); font-weight:600; }
+
+    /* ── WHY ── */
+    #why { background:var(--blue-dark); }
+    #why .section-title { color:var(--white); }
+    #why .section-label { background:rgba(147,197,253,0.15); color:#93c5fd; }
+    .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem; }
+    .why-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:1.8rem 1.4rem; text-align:center; transition:transform .3s, background .3s, border-color .3s; }
+    .why-card:hover { transform:translateY(-4px); background:rgba(37,99,192,0.3); border-color:rgba(147,197,253,0.3); }
+    .why-icon { font-size:2rem; margin-bottom:.8rem; }
+    .why-card h4 { color:var(--white); font-weight:700; font-size:1rem; margin-bottom:.4rem; }
+    .why-card p { color:rgba(255,255,255,0.55); font-size:.82rem; line-height:1.65; }
+
+    /* ── ENROLL BANNER ── */
+    .enroll-banner { background:linear-gradient(135deg,var(--blue-mid),var(--blue-dark)); padding:4rem 6%; text-align:center; }
+    .enroll-banner h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.5rem); color:var(--white); margin-bottom:.8rem; }
+    .enroll-banner p { color:rgba(255,255,255,0.7); font-size:1rem; margin-bottom:2rem; }
+
+    /* ── CONTACT ── */
+    #contact { background:var(--off-white); }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+    .contact-cards { display:flex; flex-direction:column; gap:1.2rem; }
+    .contact-card { display:flex; align-items:center; gap:1.1rem; background:var(--white); border:2px solid var(--light-blue); border-radius:14px; padding:1.2rem 1.4rem; text-decoration:none; color:inherit; transition:border-color .25s, transform .2s, box-shadow .2s; }
+    .contact-card:hover { border-color:var(--blue-light); transform:translateX(5px); box-shadow:0 6px 24px rgba(37,99,192,0.1); }
+    .cc-icon { width:50px; height:50px; flex-shrink:0; background:var(--light-blue); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+    .cc-text h4 { font-size:.85rem; font-weight:700; color:var(--blue-light); margin-bottom:.25rem; }
+    .cc-text p { font-size:.88rem; color:var(--blue-dark); font-weight:500; line-height:1.5; }
+    .contact-map { border-radius:18px; overflow:hidden; border:2px solid var(--light-blue); box-shadow:0 8px 32px rgba(37,99,192,0.1); }
+    .contact-map iframe { width:100%; height:280px; border:none; display:block; }
+    .map-footer { background:var(--white); padding:.9rem 1.1rem; display:flex; align-items:center; gap:.5rem; font-size:.82rem; color:var(--gray); font-weight:500; }
+
+    /* ── FOOTER ── */
+    footer { background:var(--blue-dark); border-top:1px solid rgba(255,255,255,0.08); text-align:center; padding:2rem 6%; color:rgba(255,255,255,0.4); font-size:.82rem; }
+    footer span { color:#93c5fd; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px) {
+      nav ul { display:none; }
+      .hero { padding:90px 5% 50px; }
+      .about-grid { grid-template-columns:1fr; gap:2.5rem; }
+      .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+      .stat-item { min-width:140px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Tara <span>Computer Center</span><small>Majhaulia, Bihar</small></div>
+  <ul>
+    <li><a href="#about">Hamare Baare Mein</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#why">Kyun Chunein</a></li>
+    <li><a href="#contact">Sampark</a></li>
+  </ul>
+  <a href="https://wa.me/919631493452?text=Namaste!%20Mujhe%20Tara%20Computer%20Center%20ke%20courses%20ki%20jaankari%20chahiye." target="_blank" class="nav-cta">💬 Abhi Poochho</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🎓 Bihar Ka Bharosemand Computer Center</div>
+    <h1>Seekho <em>Computer</em>,<br/>Banao Roshan<br/>Bhavishya</h1>
+    <p>Majhaulia, Bihar mein professional computer training – Basic se Tally tak. Practical classes, experienced teacher, aur certificate guaranteed.</p>
+    <div class="hero-btns">
+      <a href="#courses" class="btn-primary">📚 Courses Dekhein</a>
+      <a href="https://wa.me/919631493452" target="_blank" class="btn-outline">💬 WhatsApp Karein</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-lbl">Students Trained</div></div>
+  <div class="stat-item"><div class="stat-num">4</div><div class="stat-lbl">Expert Courses</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Practical Training</div></div>
+  <div class="stat-item"><div class="stat-num">📜</div><div class="stat-lbl">Certificate Milega</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="icon-circle">💻</div>
+      <h3>Tara Computer Center</h3>
+      <p>Bachho ka future banana hamara mission hai. Hum simple aur samjhne mein aasaan tarike se computer sikhate hain — bilkul beginner se lekar advanced tak.</p>
+      <ul class="feat-list">
+        <li>Experienced &amp; Dedicated Teacher</li>
+        <li>Chhote Batches – Personal Attention</li>
+        <li>Hands-on Computer Practice Daily</li>
+        <li>Course Completion Certificate</li>
+        <li>Affordable Fees – Sab ke liye</li>
+        <li>Flexible Class Timings</li>
+      </ul>
+    </div>
+    <div>
+      <div class="section-label">HAMARE BAARE MEIN</div>
+      <h2 class="section-title">Computer Sikhna Ab<br/>Mushkil Nahi!</h2>
+      <p class="section-sub">Tara Computer Center, Majhaulia mein aapko milega ek friendly learning environment jahan aap bina jhijhak sawal poochh sakte ho. Hamara goal sirf theory nahi — real skills jo life mein kaam aayein, government jobs mein help karein, aur career banane mein sahayak hon.</p>
+      <a href="https://wa.me/919631493452?text=Namaste!%20Mujhe%20admission%20ki%20jaankari%20chahiye." target="_blank" class="btn-primary-blue">📋 Admission Ke Liye Poochho</a>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;">
+    <div>
+      <div class="section-label">HAMARE COURSES</div>
+      <h2 class="section-title">Kya Seekhoge Hamare Yahan?</h2>
+    </div>
+    <p style="color:var(--gray);font-size:.9rem;max-width:280px;text-align:right;">Certificate ke saath — practical training guaranteed.</p>
+  </div>
+  <div class="courses-grid">
+
+    <div class="course-card">
+      <div class="course-top">
+        <div class="course-icon">🖥️</div>
+        <span class="course-badge">Beginners ke liye</span>
+      </div>
+      <h3>Basic Computer Course</h3>
+      <p>Computer on/off karna, keyboard &amp; mouse, Windows, files &amp; folders, internet basics — jo kuch bhi nahi jaanta uske liye perfect starting point.</p>
+      <div class="course-meta">
+        <div class="meta-item"><span>⏱️</span><span>Duration: 3 Mahine</span></div>
+        <div class="meta-item"><span>💰</span><span>₹500–1000/month</span></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-top">
+        <div class="course-icon">⌨️</div>
+        <span class="course-badge">Exam Ready</span>
+      </div>
+      <h3>Typing – Hindi &amp; English</h3>
+      <p>Fast &amp; accurate typing seekho. Hindi (Krutidev/Mangal) aur English dono mein. Government exam typing test ke liye zaroori skill.</p>
+      <div class="course-meta">
+        <div class="meta-item"><span>⏱️</span><span>Duration: 3 Mahine</span></div>
+        <div class="meta-item"><span>💰</span><span>₹500–1000/month</span></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-top">
+        <div class="course-icon">📊</div>
+        <span class="course-badge">Most Popular</span>
+      </div>
+      <h3>MS Office – Word, Excel, PPT</h3>
+      <p>Professional documents (Word), data spreadsheets (Excel), aur presentations (PowerPoint) — office aur government jobs ke liye essential skills.</p>
+      <div class="course-meta">
+        <div class="meta-item"><span>⏱️</span><span>Duration: 3 Mahine</span></div>
+        <div class="meta-item"><span>💰</span><span>₹500–1000/month</span></div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-top">
+        <div class="course-icon">🧾</div>
+        <span class="course-badge">Job Focused</span>
+      </div>
+      <h3>Tally / Accounting</h3>
+      <p>Business accounting, GST entries, vouchers, balance sheet — Tally ERP software ke saath professional accounting seekho aur achhi job paao.</p>
+      <div class="course-meta">
+        <div class="meta-item"><span>⏱️</span><span>Duration: 3 Mahine</span></div>
+        <div class="meta-item"><span>💰</span><span>₹500–1000/month</span></div>
+      </div>
+    </div>
+
+  </div>
+  <p style="color:var(--gray);font-size:.85rem;text-align:center;">
+    💡 Zyada jaankari ke liye WhatsApp karein: <a href="https://wa.me/919631493452" target="_blank" style="color:var(--blue-light);font-weight:600;">+91 96314 93452</a>
+  </p>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-label">HAMEIN KYUN CHUNEIN?</div>
+    <h2 class="section-title">Tara Computer Center Kyun Hai Khaas?</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">👨‍🏫</div><h4>Anubhavi Teacher</h4><p>Dedicated teacher jo har student ko personally guide karte hain — koi confusion nahi rahega.</p></div>
+    <div class="why-card"><div class="why-icon">👥</div><h4>Chhote Batches</h4><p>Kam students, zyada dhyan — koi bhi peeche nahi chhootega.</p></div>
+    <div class="why-card"><div class="why-icon">📜</div><h4>Certificate Milega</h4><p>Course complete karne par valid certificate — jobs aur government forms ke liye useful.</p></div>
+    <div class="why-card"><div class="why-icon">💰</div><h4>Affordable Fees</h4><p>Quality computer education, bilkul reasonable fees mein — sab ki pahunch mein.</p></div>
+    <div class="why-card"><div class="why-icon">🎯</div><h4>100% Practical</h4><p>Sirf theory nahi — roz computer par practice taaki confidence aur speed dono badhein.</p></div>
+    <div class="why-card"><div class="why-icon">📍</div><h4>Local &amp; Trusted</h4><p>Majhaulia ki apni jagah — parents ka bharosa, bachho ka pyaar.</p></div>
+  </div>
+</section>
+
+<!-- ENROLL BANNER -->
+<div class="enroll-banner">
+  <h2>Aaj Hi Admission Lijiye!</h2>
+  <p>Seats limited hain — der mat karo, abhi WhatsApp karke batch join karo.</p>
+  <a href="https://wa.me/919631493452?text=Namaste!%20Mujhe%20Tara%20Computer%20Center%20mein%20admission%20lena%20hai.%20Please%20fees%20aur%20batch%20ki%20jaankari%20dein." target="_blank" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem;">
+    💬 WhatsApp Par Abhi Baat Karein
+  </a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-label">SAMPARK KAREIN</div>
+    <h2 class="section-title">Hamaari Location &amp; Contact</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-cards">
+      <a href="https://wa.me/919631493452?text=Namaste!%20Mujhe%20Tara%20Computer%20Center%20ke%20baare%20mein%20jaankari%20chahiye." target="_blank" class="contact-card">
+        <div class="cc-icon">💬</div>
+        <div class="cc-text"><h4>WhatsApp Karein</h4><p>+91 96314 93452<br/>Somvar–Shanivaar: 8AM – 7PM</p></div>
+      </a>
+      <a href="mailto:suryaerma592@gmail.com" class="contact-card">
+        <div class="cc-icon">📧</div>
+        <div class="cc-text"><h4>Email Karein</h4><p>suryaerma592@gmail.com<br/>24 ghante mein reply milega</p></div>
+      </a>
+      <div class="contact-card">
+        <div class="cc-icon">📍</div>
+        <div class="cc-text"><h4>Hamara Pata</h4><p>Majhaulia – Jagdishpur Rd,<br/>Jamuniya, Bihar – 845459</p></div>
+      </div>
+      <div class="contact-card">
+        <div class="cc-icon">🕐</div>
+        <div class="cc-text"><h4>Center Timings</h4><p>Somvar – Shanivaar: 8:00 AM – 7:00 PM<br/>Ravivar: 10:00 AM – 2:00 PM</p></div>
+      </div>
+    </div>
+    <div class="contact-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57347.14!2d84.368!3d26.832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3993440c1d5b7b11%3A0x35e5b00e7fb6f18a!2sMajhaulia%2C%20Bihar!5e0!3m2!1shi!2sin!4v1700000000000!5m2!1shi!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-footer">📍 Majhaulia – Jagdishpur Rd, Jamuniya, Bihar 845459</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Tara Computer Center</span> &nbsp;·&nbsp; Majhaulia, Bihar &nbsp;·&nbsp; All Rights Reserved</p>
+  <p style="margin-top:.4rem;">Made with ❤️ for the students of Bihar</p>
+</footer>
+
+</body>
+</html>
